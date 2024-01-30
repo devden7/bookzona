@@ -22,7 +22,7 @@ const Navbar = () => {
             height={15}
           />
         </div>
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-1 sm:gap-5">
           {navbarList.map((item) => (
             <Link
               href={item.route}
@@ -32,7 +32,7 @@ const Navbar = () => {
               {item.label}
             </Link>
           ))}
-          <Button className="w-32 rounded-full bg-white text-black hover:bg-slate-300">
+          <Button className="w-20 rounded-full bg-white text-black hover:bg-slate-300 sm:w-32">
             Button
           </Button>
         </div>
