@@ -1,10 +1,13 @@
-import Image from "next/image";
+import Link from "next/link";
 
-import { Badge } from "@/components/ui/badge";
+import React from "react";
 
 import Hero from "@/components/shared/Hero";
+import Image from "next/image";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
-export default function Home() {
+const page = () => {
   const dummyList = [
     {
       id: 0,
@@ -82,43 +85,61 @@ export default function Home() {
 
   return (
     <>
-      <Hero taglineOne="READ AND ADD" taglineTwo="YOUR INSIGHT" />
-      <section className="mb-10 bg-slate-50">
+      <Hero taglineOne="DISCOVER YOUR" taglineTwo="PERFECT BOOK CATEGORY!" />
+      <section className="bg-slate-50">
         <div className="container">
-          <h1 className="pt-10 text-4xl font-medium">All Books</h1>
-          <div className="bg-white pb-10 shadow-md">
-            <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-10 lg:grid-cols-4">
-              {dummyList.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex h-[375px] flex-col items-center overflow-hidden pb-2 lg:h-52 lg:flex-row lg:items-start"
-                >
-                  <div className="p-2 lg:p-0">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      width={100}
-                      height={200}
-                    />
+          <div className="pb-10 lg:pt-24 xl:pt-10">
+            <div className="mt-5 flex flex-wrap gap-3 lg:justify-between">
+              <div className="flex flex-col gap-2">
+                <h5 className="font-semibold ">Category</h5>
+                <Link href="/categories">All</Link>
+                <Link href="/improvment">Improvment</Link>
+                <Link href="/comedy">Comedy</Link>
+                <Link href="/fantasy">Fantasy</Link>
+              </div>
+              <div className="grid grid-cols-2 gap-3 lg:w-3/4 lg:gap-y-16">
+                {dummyList.map((item) => (
+                  <div
+                    className="flex h-[530px] flex-col items-center overflow-hidden bg-white pb-2 sm:h-[470px] lg:relative lg:h-60 lg:w-4/5 lg:flex-row lg:items-start lg:overflow-visible"
+                    key={item.id}
+                  >
+                    <div className="lg:absolute lg:left-[-15%] lg:w-2/5 xl:w-[30%] ">
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        width={147}
+                        height={225}
+                      />
+                    </div>
+                    <div className="p-2 lg:ml-20 lg:py-2  xl:ml-16 xl:w-4/5">
+                      <h3 className="line-clamp-2 h-12 font-medium">
+                        {item.title}
+                      </h3>
+                      <p className="text-sm text-black/80">
+                        By {item.createdBy}
+                      </p>
+                      <Badge variant="outline" className="my-1">
+                        {item.thickness}
+                      </Badge>
+                      <p className="line-clamp-[7] h-36 text-sm text-black/70 sm:line-clamp-4 sm:h-20">
+                        {item.description}
+                      </p>
+                      <Button
+                        variant="outline"
+                        className="mt-2 border-primary-500 bg-primary-500/15 text-primary-500"
+                      >
+                        Buy Now
+                      </Button>
+                    </div>
                   </div>
-                  <div className="p-2 lg:w-3/5 lg:py-2 xl:w-[70%]">
-                    <h3 className="line-clamp-2 h-12 font-medium">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm text-black/80">By {item.createdBy}</p>
-                    <Badge variant="outline" className="my-1">
-                      {item.thickness}
-                    </Badge>
-                    <p className="line-clamp-5 h-40 text-sm text-black/70">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
     </>
   );
-}
+};
+
+export default page;

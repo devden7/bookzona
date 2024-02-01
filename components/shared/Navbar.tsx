@@ -33,7 +33,7 @@ const Navbar = () => {
             </Link>
           ))}
           <Button className="w-20 rounded-full bg-white text-black hover:bg-slate-300 sm:w-32">
-            Button
+            Login
           </Button>
         </div>
       </nav>

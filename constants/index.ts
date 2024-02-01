@@ -6,7 +6,7 @@ export const navbarList: baseNavbarInterface[] = [
     label: "Home",
   },
   {
-    route: "/category",
+    route: "/categories",
     label: "Category",
   },
 ];
