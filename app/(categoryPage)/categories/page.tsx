@@ -100,7 +100,7 @@ const page = () => {
               <div className="grid grid-cols-2 gap-3 lg:w-3/4 lg:gap-y-16">
                 {dummyList.map((item) => (
                   <div
-                    className="flex h-[530px] flex-col items-center overflow-hidden bg-white pb-2 sm:h-[470px] lg:relative lg:h-60 lg:w-4/5 lg:flex-row lg:items-start lg:overflow-visible"
+                    className="flex h-[530px] flex-col items-center overflow-hidden bg-white pb-2 shadow-sm sm:h-[470px] lg:relative lg:h-60 lg:w-4/5 lg:flex-row lg:items-start lg:overflow-visible"
                     key={item.id}
                   >
                     <div className="lg:absolute lg:left-[-15%] lg:w-2/5 xl:w-[30%] ">
