@@ -28,8 +28,11 @@ import { useForm } from "react-hook-form";
 import { formSchema } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { createBook } from "@/lib/actions/category.action";
+import { useState } from "react";
 
 export default function Home() {
+  const [open, setOpen] = useState(false);
   const dummyList = [
     {
       id: 0,
@@ -111,14 +114,31 @@ export default function Home() {
       title: "",
       description: "",
       image: "",
-      releaseYear: 0,
+      releaseYear: undefined,
       price: "",
-      totalPage: 0,
+      totalPage: undefined,
       category: "",
     },
   });
 
-  const submitHandler = (values: z.infer<typeof formSchema>) => {
+  const submitHandler = async (values: z.infer<typeof formSchema>) => {
+    try {
+      console.log(form);
+      const result = await createBook({
+        title: values.title,
+        description: values.description,
+        imageUrl: values.image,
+        releaseYear: values.releaseYear,
+        price: values.price,
+        totalPage: values.totalPage,
+        category: values.category,
+      });
+      console.log(result, " DARI SUBMIT HANDLER");
+      setOpen(false);
+      form.reset();
+    } catch (error) {
+      console.log(error);
+    }
     console.log(values);
   };
 
@@ -128,7 +148,7 @@ export default function Home() {
       <section className="mb-10 bg-slate-50">
         <div className="container">
           <h1 className="pt-10 text-4xl font-medium">All Books</h1>
-          <Dialog>
+          <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
               <Button variant="outline">Add Book</Button>
             </DialogTrigger>
@@ -189,7 +209,7 @@ export default function Home() {
                       <FormItem>
                         <FormLabel>Release Year</FormLabel>
                         <FormControl>
-                          <Input placeholder="shadcn" {...field} />
+                          <Input placeholder="Add Release Year" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
